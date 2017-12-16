@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+	
+				<div class="este" >
+						<div class="col-11" layout:fragment="contenido">
+							<div class="row">
+								<div class="d-none d-md-block col">
+										<h1 th:text="${animeDelID.nombre}"></h1>
+								</div>
+								<div class="col d-block d-sm-none">
+										<h2 th:text="${animeDelID.nombre}"></h2>
+								</div>
+								<div class="col d-none d-sm-block d-md-none">
+										<h2 th:text="${animeDelID.nombre}"></h2>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-3 d-none d-md-block">
+									<img class="img portada" th:src="'/img/' + ${animeDelID.imagen}"></img>
+								</div>
+								
+								<div class="col-9">
+									<p th:text="'Tipo: ' + ${animeDelID.tipo}"></p>
+									<p th:text="'Generos: ' + ${animeDelID.genero1} + ${animeDelID.genero2} + ${animeDelID.genero3}"></p>
+									<span th:each="string : ${listaCanciones}">
+										<a th:href="'/animes/' + ${animeDelID.id} + '/' + ${string}"><button th:text="${string}" type="button" class="btn btn-info"></button></a>
+									</span>
+									<a th:href="'/animes/' + ${animeDelID.id}"><button type="button" class="btn btn-info">Volver</button></a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col">
+									<h3>Canciones Subidas</h3>
+									<table style="width:100%">
+										<tr>
+											<th>Nombre</th> 
+											<th>Banda</th>
+											<th>Subido por</th>
+											<th>Descargas</th>
+											<th style="text-align: center;">D</th>
+										</tr>
+										<tr th:each="cancion : ${listaAportes}">
+											<td th:text="${cancion.nombre}"></td>
+											<td th:text="${cancion.banda}"></td>
+											<td th:text="${cancion.usuario}"></td>
+											<td th:text="${cancion.descargas}" style="width:1%;"></td>
+											<td style="width:3%;"><a th:href="'/canciones/' + ${cancion.id}"><img src="/img/descarga.png" style="width:100%"></img></a></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+					
+						</div>
+				</div>
+				
+</html>
